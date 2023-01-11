@@ -10,15 +10,18 @@ def match_exact(word: str) -> list:
     4. If not return an empty list
     """
 
-    # TODO: Establish connection to the dictionary database
+    #Establish connection to the dictionary database
+    db = SQL.connect(r"C:\Users\cyendes\OneDrive - Environmental Works\Work Programs\API Stuff\GitHub\web-apis-with-python\data\dictionary.db")
 
-    # TODO: Query the database for exact matches
+    #Query the database for exact matches
+    sql_query = "SELECT* from entries WHERE word=?"
+    match = db.execute(sql_query, (word,)).fetchall()
 
     # TODO: Clone the connection to the database
-    
+    db.close()
 
     # Return the results
-    return "TODO"
+    return match
 
 
 def match_like(word: str) -> list:
@@ -30,10 +33,14 @@ def match_like(word: str) -> list:
     4. If not return an empty list
     """
     # TODO: Establish connection to the dictionary database
+    db = SQL.connect(r"C:\Users\cyendes\OneDrive - Environmental Works\Work Programs\API Stuff\GitHub\web-apis-with-python\data\dictionary.db")
     
     # TODO: Query the database for exact matches
-    
+    sql_query = "SELECT* from entries WHERE word LIKE?"
+    match = db.execute(sql_query,("%"+word+"%",)).fetchall()
+
     # TODO: Clone the connection to the database
-    
+    db.close()
+
     # Return the results
-    return "TODO"
+    return match
